@@ -5,19 +5,19 @@ using System.ComponentModel;
 
 namespace WindowsFormsApp2.ViewModels
 {
-public class WeatherLatestViewModel : ViewModelBase
-{
-    private IWeatherRepository _weather;
-
-    public WeatherLatestViewModel()
-        :this(new WeatherSQLite())
+    public class WeatherLatestViewModel : ViewModelBase
     {
-    }
+        private IWeatherRepository _weather;
 
-    public WeatherLatestViewModel(IWeatherRepository weather)
-    {
-        _weather = weather;
-    }
+        public WeatherLatestViewModel()
+            : this(new WeatherSQLite())
+        {
+        }
+
+        public WeatherLatestViewModel(IWeatherRepository weather)
+        {
+            _weather = weather;
+        }
 
         private string _areaIdText = string.Empty;
         public string AreaIdText
@@ -56,17 +56,18 @@ public class WeatherLatestViewModel : ViewModelBase
             }
         }
 
-    public void Search()
-    {
-        var entity = _weather.GetLatest(Convert.ToInt32(AreaIdText));
-        if (entity != null)
+        public void Search()
         {
-            DateDataText = entity.DateData.ToString();
-            ConditionText = entity.Condition.DisplayValue;
-            TemperatureText = entity.Temperature.DisplayValueWithUnitSpace;
+            var entity = _weather.GetLatest(Convert.ToInt32(AreaIdText));
+            if (entity != null)
+            {
+                DateDataText = entity.DateData.ToString();
+                ConditionText = entity.Condition.DisplayValue;
+                TemperatureText = entity.Temperature.DisplayValueWithUnitSpace;
+            }
+
         }
 
-    }
 
-    
+    }
 }
