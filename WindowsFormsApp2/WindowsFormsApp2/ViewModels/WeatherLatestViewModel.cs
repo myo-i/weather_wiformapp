@@ -5,7 +5,7 @@ using System.ComponentModel;
 
 namespace WindowsFormsApp2.ViewModels
 {
-public class WeatherLatestViewModel : INotifyPropertyChanged
+public class WeatherLatestViewModel : ViewModelBase
 {
     private IWeatherRepository _weather;
 
@@ -25,12 +25,7 @@ public class WeatherLatestViewModel : INotifyPropertyChanged
             get { return _areaIdText; }
             set
             {
-                if (_areaIdText == value)
-                {
-                    return;
-                }
-                _areaIdText = value;
-                OnPropertyChanged(nameof(AreaIdText));
+                SetProperty(ref _areaIdText, value);
             }
         }
         private string _dateDataText = string.Empty;
@@ -39,12 +34,7 @@ public class WeatherLatestViewModel : INotifyPropertyChanged
             get { return _dateDataText; }
             set
             {
-                if (_dateDataText == value)
-                {
-                    return;
-                }
-                _dateDataText = value;
-                OnPropertyChanged(nameof(DateDataText));
+                SetProperty(ref _dateDataText, value);
             }
         }
         private string _conditionText = string.Empty;
@@ -53,12 +43,7 @@ public class WeatherLatestViewModel : INotifyPropertyChanged
             get { return _conditionText; }
             set
             {
-                if (_conditionText == value)
-                {
-                    return;
-                }
-                _conditionText = value;
-                OnPropertyChanged(nameof(ConditionText));
+                SetProperty(ref _conditionText, value);
             }
         }
         private string _temperatureText = string.Empty;
@@ -67,16 +52,9 @@ public class WeatherLatestViewModel : INotifyPropertyChanged
             get { return _temperatureText; }
             set
             {
-                if (_temperatureText == value)
-                {
-                    return;
-                }
-                _temperatureText = value;
-                OnPropertyChanged(nameof(TemperatureText));
+                SetProperty(ref _temperatureText, value);
             }
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
 
     public void Search()
     {
@@ -88,14 +66,7 @@ public class WeatherLatestViewModel : INotifyPropertyChanged
             TemperatureText = entity.Temperature.DisplayValueWithUnitSpace;
         }
 
-        OnPropertyChanged("");
-
     }
 
-    public void OnPropertyChanged(string propertyName)
-    {
-        PropertyChanged?.Invoke(this, 
-            new PropertyChangedEventArgs(propertyName));
-    }
-}
+    
 }

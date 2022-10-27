@@ -66,6 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
+    <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="ViewModels\WeatherLatestViewModel.cs" />
     <Compile Include="Views\WeatherLatestView.cs">
       <SubType>Form</SubType>
