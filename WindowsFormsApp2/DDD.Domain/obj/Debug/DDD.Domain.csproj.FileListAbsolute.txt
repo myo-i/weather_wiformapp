@@ -22,3 +22,9 @@ C:\Users\PC_User\MyProject\windowsform_c#\weather_wiformapp\winform_app-main\win
 C:\Users\PC_User\MyProject\windowsform_c#\weather_wiformapp\winform_app-main\winform_app-main\WindowsFormsApp2\DDD.Domain\obj\Debug\DDD.Domain.csproj.CoreCompileInputs.cache
 C:\Users\PC_User\MyProject\windowsform_c#\weather_wiformapp\winform_app-main\winform_app-main\WindowsFormsApp2\DDD.Domain\obj\Debug\DDD.Domain.dll
 C:\Users\PC_User\MyProject\windowsform_c#\weather_wiformapp\winform_app-main\winform_app-main\WindowsFormsApp2\DDD.Domain\obj\Debug\DDD.Domain.pdb
+C:\Users\PC_User\MyProject\windowsform_c#\weather_wiformapp\WindowsFormsApp2\DDD.Domain\bin\Debug\DDD.Domain.dll
+C:\Users\PC_User\MyProject\windowsform_c#\weather_wiformapp\WindowsFormsApp2\DDD.Domain\bin\Debug\DDD.Domain.pdb
+C:\Users\PC_User\MyProject\windowsform_c#\weather_wiformapp\WindowsFormsApp2\DDD.Domain\obj\Debug\DDD.Domain.csproj.AssemblyReference.cache
+C:\Users\PC_User\MyProject\windowsform_c#\weather_wiformapp\WindowsFormsApp2\DDD.Domain\obj\Debug\DDD.Domain.csproj.CoreCompileInputs.cache
+C:\Users\PC_User\MyProject\windowsform_c#\weather_wiformapp\WindowsFormsApp2\DDD.Domain\obj\Debug\DDD.Domain.dll
+C:\Users\PC_User\MyProject\windowsform_c#\weather_wiformapp\WindowsFormsApp2\DDD.Domain\obj\Debug\DDD.Domain.pdb
