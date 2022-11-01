@@ -1,4 +1,5 @@
-﻿using DDD.Domain.Repositories;
+﻿using DDD.Domain.Entities;
+using DDD.Domain.Repositories;
 using DDD.Infrastructure.SQLite;
 using System;
 using System.ComponentModel;
@@ -8,15 +9,24 @@ namespace WindowsFormsApp2.ViewModels
     public class WeatherLatestViewModel : ViewModelBase
     {
         private IWeatherRepository _weather;
+        IAreasRepository _areas;
 
         public WeatherLatestViewModel()
-            : this(new WeatherSQLite())
+            : this(new WeatherSQLite(), null)
         {
         }
 
-        public WeatherLatestViewModel(IWeatherRepository weather)
+        public WeatherLatestViewModel(
+            IWeatherRepository weather, 
+            IAreasRepository areas)
         {
             _weather = weather;
+            _areas = areas;
+
+            foreach (var area in _areas.GetData())
+            {
+                Areas.Add(new AreaEntity(area.AreaId, area.AreaName));
+            }
         }
 
         private string _areaIdText = string.Empty;
@@ -55,6 +65,9 @@ namespace WindowsFormsApp2.ViewModels
                 SetProperty(ref _temperatureText, value);
             }
         }
+
+        public BindingList<AreaEntity> Areas { get; set; }
+        = new BindingList<AreaEntity>();
 
         public void Search()
         {
