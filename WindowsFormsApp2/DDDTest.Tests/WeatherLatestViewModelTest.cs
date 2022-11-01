@@ -6,6 +6,7 @@ using System.Data;
 using System.Diagnostics;
 using DDD.Domain.Entities;
 using Moq;
+using System.Collections.Generic;
 
 namespace DDDTest.Tests
 {
@@ -28,13 +29,23 @@ namespace DDDTest.Tests
                 2,
                 25.21234f));
 
+            var areasMock = new Mock<IAreasRepository>();
+
+            var areas = new List<AreaEntity>();
+            areas.Add(new AreaEntity(1, "東京"));
+            areas.Add(new AreaEntity(2, "神戸"));
+            areasMock.Setup(x => x.GetData()).Returns(areas);
 
 
-            var viewModel = new WeatherLatestViewModel(weatherMock.Object);
+
+            var viewModel = new WeatherLatestViewModel(
+                weatherMock.Object, 
+                areasMock.Object);
             Assert.AreEqual("", viewModel.AreaIdText);
             Assert.AreEqual("", viewModel.DateDataText);
             Assert.AreEqual("", viewModel.ConditionText);
             Assert.AreEqual("", viewModel.TemperatureText);
+            Assert.AreEqual(2, viewModel.Areas.Count);
 
 
             viewModel.AreaIdText = "1";
