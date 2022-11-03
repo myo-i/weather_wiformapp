@@ -1,4 +1,5 @@
-﻿using DDD.Domain.Repositories;
+﻿using DDD.Domain.Entities;
+using DDD.Domain.Repositories;
 using DDD.Infrastructure.SQLite;
 using System;
 using System.ComponentModel;
@@ -8,24 +9,33 @@ namespace WindowsFormsApp2.ViewModels
     public class WeatherLatestViewModel : ViewModelBase
     {
         private IWeatherRepository _weather;
+        IAreasRepository _areas;
 
         public WeatherLatestViewModel()
-            : this(new WeatherSQLite())
+            : this(new WeatherSQLite(), new AreasSQLite())
         {
         }
 
-        public WeatherLatestViewModel(IWeatherRepository weather)
+        public WeatherLatestViewModel(
+            IWeatherRepository weather, 
+            IAreasRepository areas)
         {
             _weather = weather;
+            _areas = areas;
+
+            foreach (var area in _areas.GetData())
+            {
+                Areas.Add(new AreaEntity(area.AreaId, area.AreaName));
+            }
         }
 
-        private string _areaIdText = string.Empty;
-        public string AreaIdText
+        private object _selectedareaId;
+        public object SelectedAreaId
         {
-            get { return _areaIdText; }
+            get { return _selectedareaId; }
             set
             {
-                SetProperty(ref _areaIdText, value);
+                SetProperty(ref _selectedareaId, value);
             }
         }
         private string _dateDataText = string.Empty;
@@ -56,14 +66,24 @@ namespace WindowsFormsApp2.ViewModels
             }
         }
 
+        public BindingList<AreaEntity> Areas { get; set; }
+        = new BindingList<AreaEntity>();
+
         public void Search()
         {
-            var entity = _weather.GetLatest(Convert.ToInt32(AreaIdText));
+            var entity = _weather.GetLatest(Convert.ToInt32(_selectedareaId));
             if (entity != null)
             {
                 DateDataText = entity.DateData.ToString();
                 ConditionText = entity.Condition.DisplayValue;
                 TemperatureText = entity.Temperature.DisplayValueWithUnitSpace;
+            }
+            else
+            {
+                DateDataText = string.Empty;
+                ConditionText = string.Empty;
+                TemperatureText = string.Empty;
+
             }
 
         }

@@ -28,5 +28,16 @@ namespace UnitTestProject1
         {
             Assert.AreEqual(3, Class1.Add(-1, 2));
         }
+
+
+        [TestMethod]
+        public void TestMethod2()
+        {
+            Class1.Add(1, 2).Is(3);
+
+            var ex = AssertEx.Throws<InputException>(() => Class1.Add(-1, 2));
+            ex.Message.Is("負の数は入力できません");
+        }
+
     }
 }
