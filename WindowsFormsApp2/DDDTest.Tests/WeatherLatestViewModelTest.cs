@@ -60,9 +60,9 @@ namespace DDDTest.Tests
             Assert.AreEqual("曇り", viewModel.ConditionText);
             Assert.AreEqual("12.30 ℃", viewModel.TemperatureText);
 
-            viewModel.SelectedAreaId = 2;
+            viewModel.SelectedAreaId = "2";
             viewModel.Search();
-            Assert.AreEqual(2, viewModel.SelectedAreaId);
+            Assert.AreEqual("2", viewModel.SelectedAreaId);
             Assert.AreEqual("2018/01/01 12:34:56", viewModel.DateDataText);
             Assert.AreEqual("曇り", viewModel.ConditionText);
             Assert.AreEqual("25.21 ℃", viewModel.TemperatureText);
