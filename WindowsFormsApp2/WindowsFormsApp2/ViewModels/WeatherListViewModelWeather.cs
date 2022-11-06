@@ -15,7 +15,7 @@ namespace WindowsFormsApp2.ViewModels
             _entity = entity;
         }
 
-        public string AreaId => _entity.AreaId.ToString();
+        public string AreaId => _entity.AreaId.DisplayValue;
         public string AreaName => _entity.AreaName.ToString();
         public string DateData => _entity.DateData.ToString();
         public string Condition => _entity.Condition.DisplayValue;
