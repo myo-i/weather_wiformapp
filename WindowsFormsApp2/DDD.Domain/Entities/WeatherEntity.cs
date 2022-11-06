@@ -20,14 +20,14 @@ namespace DDD.Domain.Entities
                              int condition,
                              float temperature)
         {
-            AreaId = areaId;
+            AreaId = new AreaId(areaId);
             AreaName = areaName;
             DateData = datedata;
             Condition = new Condition(condition);
             Temperature = new Temperature(temperature);
         }
 
-        public int AreaId { get; }
+        public AreaId AreaId { get; }
         public string AreaName { get; }
         public DateTime DateData { get; }
         public Condition Condition { get; }
