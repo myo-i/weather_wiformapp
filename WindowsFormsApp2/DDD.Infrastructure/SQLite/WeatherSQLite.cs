@@ -1,5 +1,6 @@
 ﻿using DDD.Domain.Entities;
 using DDD.Domain.Repositories;
+using DDD.Domain.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
@@ -60,11 +61,30 @@ LIMIT 1
 
         public IReadOnlyList<WeatherEntity> GetData()
         {
-            throw new NotImplementedException();
+            string sql = @"
+select A.AreaId,
+         ifnull(B.AreaName,'') as AreaName,
+         A.DateData,
+         A.Condition,
+         A.Temperature
+from Weather A
+left outer join Areas B
+on A.AreaId = B.AreaId
+";
+
+            return SQLiteHelper.Query(
+                sql,
+                reader =>
+                {
+                    return new WeatherEntity(
+                            // クラス上部のエンティティではareaIdを入力するためareaIdとしているが、
+                            // 今回はSQLから値を取るので下記のように記述する
+                            Convert.ToInt32(reader["AreaId"]),
+                            Convert.ToString(reader["AreaName"]),
+                            Convert.ToDateTime(reader["DateData"]),
+                            Convert.ToInt32(reader["Condition"]),
+                            Convert.ToSingle(reader["Temperature"]));
+                });
         }
-
-
-
-
     }
 }
