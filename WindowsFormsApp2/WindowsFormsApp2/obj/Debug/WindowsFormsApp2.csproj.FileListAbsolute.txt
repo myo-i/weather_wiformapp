@@ -121,3 +121,4 @@ C:\Users\PC_User\MyProject\windowsform_c#\weather_wiformapp\WindowsFormsApp2\Win
 C:\Users\PC_User\MyProject\windowsform_c#\weather_wiformapp\WindowsFormsApp2\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.csproj.CopyComplete
 C:\Users\PC_User\MyProject\windowsform_c#\weather_wiformapp\WindowsFormsApp2\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.exe
 C:\Users\PC_User\MyProject\windowsform_c#\weather_wiformapp\WindowsFormsApp2\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.pdb
+C:\Users\PC_User\MyProject\windowsform_c#\weather_wiformapp\WindowsFormsApp2\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.Views.WeatherListView.resources
