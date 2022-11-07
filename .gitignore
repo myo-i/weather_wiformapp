@@ -231,6 +231,7 @@ _pkginfo.txt
 
 # manifestfile
 *.manifest
+WindowsFormsApp2\.vs\DDD\v17\TestStore\0\testlog.manifest
 
 # Others
 ClientBin/

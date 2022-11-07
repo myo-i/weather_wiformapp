@@ -53,7 +53,7 @@ namespace DDD.Infrastructure.SQLite
             Func<SQLiteDataReader, T> createEntity,
             T nullEntity)
         {
-            return QuerySingle<T>(sql, null, createEntity, nullEntity)
+            return QuerySingle<T>(sql, null, createEntity, nullEntity);
         }
 
 
