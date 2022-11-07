@@ -2,6 +2,7 @@
 using System;
 using System.Windows.Forms;
 using WindowsFormsApp2.ViewModels;
+using WindowsFormsApp2.Views;
 
 namespace WindowsFormsApp2
 {
@@ -46,6 +47,14 @@ namespace WindowsFormsApp2
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            using (var f = new WeatherListView())
+            {
+                f.ShowDialog();
+            }
         }
     }
 }
