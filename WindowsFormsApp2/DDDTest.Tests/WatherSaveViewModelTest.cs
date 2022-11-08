@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using System;
 using WindowsFormsApp2.ViewModels;
 
@@ -10,7 +11,10 @@ namespace DDDTest.Tests
         [TestMethod]
         public void WeatherRegist()
         {
-            var viewModel = new WeatherSaveViewModel();
+            var viewModelMock = new Mock<WeatherSaveViewModel>();
+            viewModelMock.Setup(x => x.GetDateTime()).Returns(
+                Convert.ToDateTime("2022/01/01 12:34:56"));
+            var viewModel = viewModelMock.Object;
             viewModel.SelectedAreaId.IsNull();
             viewModel.DateDataValue.Is(
                 Convert.ToDateTime("2022/01/01 12:34:56"));
