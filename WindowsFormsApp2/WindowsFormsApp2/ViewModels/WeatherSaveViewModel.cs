@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DDD.Domain.ValueObjects;
+using System;
 
 namespace WindowsFormsApp2.ViewModels
 {
@@ -6,7 +7,9 @@ namespace WindowsFormsApp2.ViewModels
     {
         public WeatherSaveViewModel()
         {
-            DateDataValue = DateTime.Now;
+            DateDataValue = GetDateTime();
+            SelectedCondition = Condition.Sunny.Value;
+            TemperatureText = String.Empty;
         }
         // AreaIdとConditionはコンボボックスのValueを
         // バインディングするのでobject型
@@ -14,5 +17,6 @@ namespace WindowsFormsApp2.ViewModels
         public DateTime DateDataValue { get; set; }
         public object SelectedCondition { get; set; }
         public string TemperatureText { get; set; }
+
     }
 }
