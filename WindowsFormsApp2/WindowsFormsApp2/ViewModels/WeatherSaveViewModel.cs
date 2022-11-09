@@ -1,4 +1,5 @@
 ﻿using DDD.Domain.Entities;
+using DDD.Domain.Exceptions;
 using DDD.Domain.Repositories;
 using DDD.Domain.ValueObjects;
 using System;
@@ -37,5 +38,13 @@ namespace WindowsFormsApp2.ViewModels
         // 入力した際の区分を返す
         public BindingList<Condition> Conditions { get; set; }
         = new BindingList<Condition>(Condition.ToList());
+
+        public void Save()
+        {
+            if (SelectedAreaId == null)
+            {
+                throw new InputException("エリアを選択してください");
+            }
+        }
     }
 }
