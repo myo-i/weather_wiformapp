@@ -38,6 +38,12 @@ namespace DDDTest.Tests
 
             var ex = AssertEx.Throws<InputException>(() => viewModel.Save());
             ex.Message.Is("エリアを選択してください");
+
+            viewModel.SelectedAreaId = 2;
+            ex = AssertEx.Throws<InputException>(() => viewModel.Save());
+            ex.Message.Is("温度を入力してください");
+
+
         }
     }
 }
