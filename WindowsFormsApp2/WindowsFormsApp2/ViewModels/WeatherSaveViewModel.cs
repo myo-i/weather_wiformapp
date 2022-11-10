@@ -1,5 +1,6 @@
 ﻿using DDD.Domain.Entities;
 using DDD.Domain.Exceptions;
+using DDD.Domain.Helpers;
 using DDD.Domain.Repositories;
 using DDD.Domain.ValueObjects;
 using System;
@@ -41,10 +42,9 @@ namespace WindowsFormsApp2.ViewModels
 
         public void Save()
         {
-            if (SelectedAreaId == null)
-            {
-                throw new InputException("エリアを選択してください");
-            }
+            Guard.IsNull(SelectedAreaId, "エリアを選択してください");
+            var temperature =
+                Guard.IsFloat(TemperatureText, "温度を入力してください");
         }
     }
 }
