@@ -12,10 +12,14 @@ namespace WindowsFormsApp2.ViewModels
 {
     public class WeatherSaveViewModel : ViewModelBase
     {
+        private IWeatherRepository _weather;
         private IAreasRepository _areas;
 
-        public WeatherSaveViewModel(IAreasRepository areas)
+        public WeatherSaveViewModel(
+            IWeatherRepository weather,
+            IAreasRepository areas)
         {
+            _weather = weather;
             _areas = areas;
 
             DateDataValue = GetDateTime();
@@ -45,6 +49,14 @@ namespace WindowsFormsApp2.ViewModels
             Guard.IsNull(SelectedAreaId, "エリアを選択してください");
             var temperature =
                 Guard.IsFloat(TemperatureText, "温度を入力してください");
+
+            var entity = new WeatherEntity(
+                Convert.ToInt32(SelectedAreaId),
+                DateDataValue,
+                Convert.ToInt32(SelectedCondition),
+                temperature);
+
+            _weather.Save(entity);
         }
     }
 }
