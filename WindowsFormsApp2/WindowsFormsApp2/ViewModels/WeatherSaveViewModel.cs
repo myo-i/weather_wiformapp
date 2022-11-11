@@ -3,6 +3,7 @@ using DDD.Domain.Exceptions;
 using DDD.Domain.Helpers;
 using DDD.Domain.Repositories;
 using DDD.Domain.ValueObjects;
+using DDD.Infrastructure.SQLite;
 using System;
 using System.ComponentModel;
 using System.Linq;
@@ -14,6 +15,11 @@ namespace WindowsFormsApp2.ViewModels
     {
         private IWeatherRepository _weather;
         private IAreasRepository _areas;
+
+        public WeatherSaveViewModel()
+            :this(new WeatherSQLite(), new AreasSQLite())
+        {
+        }
 
         public WeatherSaveViewModel(
             IWeatherRepository weather,
@@ -43,6 +49,7 @@ namespace WindowsFormsApp2.ViewModels
         // 入力した際の区分を返す
         public BindingList<Condition> Conditions { get; set; }
         = new BindingList<Condition>(Condition.ToList());
+        public string TemperatureUnitName => Temperature.UnitName;
 
         public void Save()
         {
