@@ -86,5 +86,34 @@ on A.AreaId = B.AreaId
                             Convert.ToSingle(reader["Temperature"]));
                 });
         }
+
+        public void Save(WeatherEntity weather)
+        {
+            string insert = @"
+insert into Weather
+(AreaId,DateData,Condition,Temperature)
+values
+(@AreaId,@DateData,@Condition,@Temperature)
+";
+
+            string update = @"
+update Weather
+set Condition = @Condition,
+    Temperature = @Temperature
+where AreaId = @AreaId
+and DateData = @DateData
+";
+
+            var args = new List<SQLiteParameter>
+            {
+                new SQLiteParameter("@AreaId", weather.AreaId.Value),
+                new SQLiteParameter("@DateData", weather.DateData),
+                new SQLiteParameter("@Condition", weather.Condition.Value),
+                new SQLiteParameter("@Temperature", weather.Temperature.Value)
+            };
+
+            // Execute内のAddRangeがリストではなく配列が必要なので配列に変換する必要がある
+            SQLiteHelper.Execute(insert, update, args.ToArray());
+        }
     }
 }
