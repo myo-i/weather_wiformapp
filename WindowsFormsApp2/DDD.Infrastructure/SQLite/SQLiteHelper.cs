@@ -1,7 +1,9 @@
 ﻿using DDD.Domain.Entities;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Data.SQLite;
+using System.Security.Cryptography;
 
 namespace DDD.Infrastructure.SQLite
 {
@@ -83,6 +85,48 @@ namespace DDD.Infrastructure.SQLite
             }
 
             return nullEntity;
+        }
+
+        internal static void Execute(
+            string insert,
+            string update,
+            SQLiteParameter[] parameters)
+        {
+            using (var connection =
+            new SQLiteConnection(SQLiteHelper.ConnectionString))
+            using (var command = new SQLiteCommand(update, connection))
+            {
+                connection.Open();
+                if (parameters != null)
+                {
+                    command.Parameters.AddRange(parameters);
+                }
+
+                // 実行対象の件数が1件より少ない場合（対象のデータがない場合insertを実行）
+                if (command.ExecuteNonQuery() < 1)
+                {
+                    command.CommandText = insert;
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+        internal static void Execute(
+            string sql,
+            SQLiteParameter[] parameters)
+        {
+            using (var connection =
+            new SQLiteConnection(SQLiteHelper.ConnectionString))
+            using (var command = new SQLiteCommand(sql, connection))
+            {
+                connection.Open();
+                if (parameters != null)
+                {
+                    command.Parameters.AddRange(parameters);
+                }
+
+                command.ExecuteNonQuery();
+            }
         }
     }
 }
